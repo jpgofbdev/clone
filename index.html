@@ -16,32 +16,33 @@
       padding:0 15px; z-index:1002;
     }
     .brand { display:flex; align-items:center; }
-    .tree-icon { font-size:1.5em; margin-right:8px; }
-    .brand-name { font-family:'Poppins',sans-serif; font-size:1.3em; font-weight:600; color:#2c3e50; }
-    .header-text { font-size:0.85em; color:#555; margin-left:10px; }
-    .icons a { margin-left:12px; font-size:1.3em; color:#333; text-decoration:none; }
+    .tree-icon { font-size:1.3em; margin-right:6px; } /* réduit de ~15% */
+    .brand-name { font-family:'Poppins',sans-serif; font-size:1.1em; font-weight:600; color:#2c3e50; } /* réduit */
+    .header-text { font-size:0.75em; color:#555; margin-left:8px; } /* réduit */
+    .icons a { margin-left:10px; font-size:1.1em; color:#333; text-decoration:none; } /* réduit */
     #controls {
-      position:absolute; top:70px; left:10px; max-width:220px; background:white;
-      padding:10px; border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2);
-      z-index:1001; font-size:13px;
+      position:absolute; top:70px; left:8px; max-width:200px; background:white;
+      padding:8px; border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2);
+      z-index:1001; font-size:11px; /* réduit */
     }
+    #controls select, #controls button { width:85%; } /* réduit largeur */
     #legend {
-      position:absolute; top:70px; right:10px; background:white;
-      padding:10px; border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2);
-      z-index:1001; font-size:13px;
+      position:absolute; top:70px; right:8px; background:white; padding:8px;
+      border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2);
+      z-index:1001; font-size:11px; /* réduit de ~15% */
     }
+    #legend label { display:flex; align-items:center; margin-bottom:4px; font-size:11px; }
     #map { position:absolute; top:60px; bottom:0; left:0; right:0; }
-    select, button { margin-top:5px; width:100%; }
     .label-rang {
-      font-size:12px; font-weight:bold; color:black;
+      font-size:11px; font-weight:bold; color:black;
       text-shadow:1px 1px 1px white,-1px 1px 1px white,1px -1px 1px white,-1px -1px 1px white;
-      transform: translateX(8px); pointer-events:none;
+      transform: translateX(6px); /* réduit décalage */
+      pointer-events:none;
     }
     .label-tirag {
-      font-size:12px; color:black; pointer-events:none;
+      font-size:11px; color:black; pointer-events:none;
     }
-    #legend label { display:flex; align-items:center; margin-bottom:5px; }
-    .color-box { width:15px; height:15px; margin-right:8px; border:1px solid #333; }
+    .color-box { width:13px; height:13px; margin-right:6px; border:1px solid #333; } /* réduit */
     .leaflet-control-layers { z-index:1001 !important; }
   </style>
 </head>
@@ -81,7 +82,6 @@
   <script src="https://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js"></script>
   <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
   <script>
-    // Copié depuis index_corrected13.js pour assurer l'affichage de la carte
     const map = L.map('map',{zoomControl:false}).setView([46.6,2.5],6);
     Gp.Services.getConfig({
       apiKey:"essentiels",
@@ -94,13 +94,11 @@
       },
       onError:err=>console.error("Erreur IGN:",err)
     });
-
     let dptPolygons, fullData, mailleLayer, subdivLayer;
     const colors={0:"#888",1:"#1f78b4",2:"#33a02c",3:"#e31a1c",4:"#ff7f00",5:"#6a3d9a"};
     const activeRangs=new Set([0,1,2,3,4,5]);
     const dptLayer = L.geoJSON(null,{style:{color:"#33cc33",weight:2,fillColor:"#33cc33",fillOpacity:0.05}}).addTo(map);
     const visibleLabels = L.layerGroup().addTo(map);
-
     fetch('geojson/dpt_4326_simplif100.geojson').then(r=>r.json()).then(data=>{
       dptPolygons=data;
       const sel=document.getElementById("departementSelect");
@@ -109,7 +107,6 @@
         o.text=`${f.properties.nom_m} (${f.properties.insee_dep})`; sel.appendChild(o);
       });
     });
-
     fetch('geojson/remplacantes_label.geojson').then(r=>r.json()).then(data=>{
       fullData=data;
       const cbCont=document.getElementById("checkboxes");
@@ -121,7 +118,6 @@
         cbCont.appendChild(lbl);
       });
     });
-
     function onDeptChange(code){
       if(!code)return;
       zoomToDepartement(code);
@@ -137,7 +133,6 @@
       for(let i=1;i<=max;i++){ const o=document.createElement("option"); o.value=i; o.text=i; lf.appendChild(o); }
       document.getElementById("subdivideBtn").style.display='inline-block';
     }
-
     function applyFilters(){
       const labelFilter=document.getElementById("labelFilterSelect").value;
       activeRangs.clear();
@@ -159,17 +154,14 @@
         }
       }).addTo(map);
     }
-
     function zoomToDepartement(code){
       const feat=dptPolygons.features.find(f=>f.properties.insee_dep==code);
       if(feat){ dptLayer.clearLayers().addData(feat); map.fitBounds(L.geoJSON(feat).getBounds()); }
     }
-
     function showMaillesForDept(code){
       fullData={...fullData,features:fullData.features.filter(f=>f.properties.ID_DEPT==code)};
       applyFilters();
     }
-
     function toggleSubMailles(){
       const btn=document.getElementById("subdivideBtn");
       if(subdivLayer){ map.removeLayer(subdivLayer); subdivLayer=null; btn.textContent="Afficher les sous-mailles"; return; }
@@ -182,14 +174,12 @@
             const weight=Math.round(1000-(n-1)*60);
             const col=(n-1)%4; const offsetX=(col<2?-8:8);
             const c=layer.getBounds().getCenter();
-            L.marker(c,{icon:L.divIcon({className:'label-tirag',html:n,iconSize:[20,20],iconAnchor:[offsetX,0],style:'font-weight:'+weight}),interactive:false})
-              .addTo(map);
+            L.marker(c,{icon:L.divIcon({className:'label-tirag',html:n,iconSize:[20,20],iconAnchor:[offsetX,0],style:'font-weight:'+weight}),interactive:false}).addTo(map);
           }
         }).addTo(map);
         btn.textContent="Masquer les sous-mailles";
       });
     }
-
     function geolocate(){
       navigator.geolocation.getCurrentPosition(pos=>{
         const pt=turf.point([pos.coords.longitude,pos.coords.latitude]);
@@ -202,13 +192,11 @@
           document.getElementById("geolocateBtn").disabled=true;
           onDeptChange(code);
         }
-        L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:6,color:'red'}).addTo(map)
-          .bindPopup("Vous êtes ici").openPopup();
+        L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:6,color:'red'}).addTo(map).bindPopup("Vous êtes ici").openPopup();
       },()=>alert("Géolocalisation impossible"));
     }
-
     function showInstallInstructions(){
-      alert("Pour ajouter Maill'haie à votre écran d'accueil sous Android, ouvrez le menu du navigateur et choisissez 'Ajouter à l'écran d'accueil'.");
+      alert("Pour ajouter Maill'haie à votre écran d'accueil, utilisez le menu du navigateur et sélectionnez 'Ajouter à l'écran d'accueil'.");
     }
   </script>
 </body>
