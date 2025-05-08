@@ -140,7 +140,7 @@
 
     // Chargement GeoJSON départements et mailles
     let dptPolygons, fullData, mailleLayer, subdivLayer;
-    const colors = {0:"#888",1:"#1f78b4",2:"#33a02c",3:"#e31a1c",4:"#ff7f00",5:"#6a3d9a"};
+    const colors = {0:"#FFD700",1:"#1f78b4",2:"#33a02c",3:"#e31a1c",4:"#ff7f00",5:"#6a3d9a"};
     const activeRangs = new Set([0,1,2,3,4,5]);
     const dptLayer = L.geoJSON(null,{style:{color:"#33cc33",weight:2,fillColor:"#33cc33",fillOpacity:0.05}}).addTo(map);
     const visibleLabels = L.layerGroup().addTo(map);
