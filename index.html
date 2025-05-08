@@ -25,10 +25,7 @@
       padding:8px; border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2);
       z-index:1001; font-size:11px;
     }
-    #controls select, #controls button {
-      width:85%;
-      margin-top:5px;
-    }
+    #controls select, #controls button { width:85%; margin-top:5px; }
     #controls label { margin-top:10px; font-size:11px; font-weight:600; }
     #legend {
       position:absolute; top:70px; right:8px; background:white; padding:8px;
@@ -44,17 +41,12 @@
       transform: translateX(6px); pointer-events:none;
     }
     .label-tirag { font-size:11px; color:black; pointer-events:none; }
-    /* Style du contrôle de recherche bottomleft */
     .leaflet-control-search {
-      background: white;
-      padding: 4px;
-      border-radius: 4px;
+      background: white; padding: 4px; border-radius: 4px;
       box-shadow: 0 0 4px rgba(0,0,0,0.3);
     }
     .leaflet-control-search input {
-      width: 150px;
-      padding: 2px 4px;
-      font-size: 12px;
+      width: 150px; padding: 2px 4px; font-size: 12px;
     }
   </style>
 </head>
@@ -63,7 +55,7 @@
     <div class="brand">
       <span class="tree-icon">🌳</span>
       <span class="brand-name">Maill'haie</span>
-      <span class="header-text">Application de repérage des mailles du suivi du bocage</span>
+      <span class="header-text">Application de repérage des mailles DSB</span>
     </div>
     <div class="icons">
       <a href="modedemploi.html" title="Mode d'emploi">📖</a>
@@ -95,50 +87,50 @@
   <script src="https://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js"></script>
   <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
   <script>
-    // Initialisation carte et couches
+    // Initialisation de la carte et couches
     const map = L.map('map',{zoomControl:false}).setView([46.6,2.5],6);
     Gp.Services.getConfig({
       apiKey:"essentiels",
       onSuccess:config=>{
-        const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
-        const ortho=L.geoportalLayer.WMTS({layer:"ORTHOIMAGERY.ORTHOPHOTOS"});
-        const plan=L.geoportalLayer.WMTS({layer:"GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2"});
-        L.control.layers({"OSM":osm,"Ortho":ortho,"Plan":plan},null,{position:'bottomleft'}).addTo(map);
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'© OSM'}).addTo(map);
+        const ortho = L.geoportalLayer.WMTS({layer:"ORTHOIMAGERY.ORTHOPHOTOS"});
+        const plan = L.geoportalLayer.WMTS({layer:"GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2"});
+        L.control.layers({OSM:osm, Ortho:ortho, Plan:plan},null,{position:'bottomleft'}).addTo(map);
         addSearchControl();
       }
     });
 
-    // Ajout du contrôle de recherche bottomleft
+    // Contrôle de recherche bottomleft
     function addSearchControl(){
       const SearchControl = L.Control.extend({
-        options: { position: 'bottomleft' },
-        onAdd: function(map){
-          const container = L.DomUtil.create('div','leaflet-control-search');
-          container.innerHTML = '<input id="searchCommune" list="suggestions" placeholder="Commune" autocomplete="off"/><datalist id="suggestions"></datalist>';
-          L.DomEvent.disableClickPropagation(container);
-          return container;
+        options:{position:'bottomleft'},
+        onAdd: function(){
+          const div = L.DomUtil.create('div','leaflet-control-search');
+          div.innerHTML = '<input id="searchCommune" list="suggestions" placeholder="Commune" autocomplete="off"/><datalist id="suggestions"></datalist>';
+          L.DomEvent.disableClickPropagation(div);
+          return div;
         }
       });
       map.addControl(new SearchControl());
       const input = document.getElementById('searchCommune');
-      const datalist = document.getElementById('suggestions');
+      const dl = document.getElementById('suggestions');
       input.addEventListener('input', () => {
         const v = input.value; if(v.length<3) return;
         fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(v)}&type=municipality`)
           .then(r=>r.json()).then(data=>{
-            datalist.innerHTML='';
+            dl.innerHTML = '';
             data.features.forEach(f=>{
               const opt = document.createElement('option');
               opt.value = f.properties.name;
               opt.dataset.lat = f.geometry.coordinates[1];
               opt.dataset.lon = f.geometry.coordinates[0];
-              datalist.appendChild(opt);
+              dl.appendChild(opt);
             });
           });
       });
       input.addEventListener('change', ()=>{
         const val = input.value;
-        Array.from(datalist.options).forEach(opt=>{
+        Array.from(dl.options).forEach(opt=>{
           if(opt.value === val){
             map.setView([opt.dataset.lat,opt.dataset.lon],12);
           }
@@ -148,39 +140,118 @@
 
     // Chargement GeoJSON départements et mailles
     let dptPolygons, fullData, mailleLayer, subdivLayer;
-    const colors={0:"#888",1:"#1f78b4",2:"#33a02c",3:"#e31a1c",4:"#ff7f00",5:"#6a3d9a"};
-    const activeRangs=new Set([0,1,2,3,4,5]);
-    const dptLayer=L.geoJSON(null,{style:{color:"#33cc33",weight:2,fillColor:"#33cc33",fillOpacity:0.05}}).addTo(map);
-    const visibleLabels=L.layerGroup().addTo(map);
+    const colors = {0:"#888",1:"#1f78b4",2:"#33a02c",3:"#e31a1c",4:"#ff7f00",5:"#6a3d9a"};
+    const activeRangs = new Set([0,1,2,3,4,5]);
+    const dptLayer = L.geoJSON(null,{style:{color:"#33cc33",weight:2,fillColor:"#33cc33",fillOpacity:0.05}}).addTo(map);
+    const visibleLabels = L.layerGroup().addTo(map);
+
     fetch('geojson/dpt_4326_simplif100.geojson').then(r=>r.json()).then(data=>{
       dptPolygons=data;
       const sel=document.getElementById("departementSelect");
       data.features.sort((a,b)=>a.properties.nom_m.localeCompare(b.properties.nom_m))
-          .forEach(f=>{const o=document.createElement("option");
-            o.value=f.properties.insee_dep;
-            o.text=`${f.properties.nom_m} (${f.properties.insee_dep})`;
-            sel.appendChild(o);
-          });
+        .forEach(f=>{const o=document.createElement("option");
+          o.value=f.properties.insee_dep;
+          o.text=`${f.properties.nom_m} (${f.properties.insee_dep})`;
+          sel.appendChild(o);
+        });
     });
+
     fetch('geojson/remplacantes_label.geojson').then(r=>r.json()).then(data=>{
       fullData=data;
-      const cbCont=document.getElementById("checkboxes");
+      const cb=document.getElementById("checkboxes");
       Object.entries(colors).forEach(([rang,color])=>{
         const lbl=document.createElement("label");
-        lbl.innerHTML=`<div class="color-box" style="background:${color}"></div>
+        lbl.innerHTML = `<div class="color-box" style="background:${color}"></div>
           <input type="checkbox" value="${rang}" checked onchange="applyFilters()"> 
-          ${rang===0?"Maille initiale":"Remplaçante "+rang}`;
-        cbCont.appendChild(lbl);
+          ${rang===0?"maille initiale":"Remplaçante "+rang}`;
+        cb.appendChild(lbl);
       });
     });
 
-    // Fonctions de filtrage et affichage des mailles (comme précédemment)
-    function onDeptChange(code){ /* ... */ }
-    function applyFilters(){ /* ... */ }
-    function zoomToDepartement(code){ /* ... */ }
-    function showMaillesForDept(code){ /* ... */ }
-    function toggleSubMailles(){ /* ... */ }
-    function geolocate(){ /* ... */ }
+    // Fonctions de filtrage et affichage
+    function onDeptChange(code){
+      if(!code) return;
+      zoomToDepartement(code);
+      showMaillesForDept(code);
+      document.getElementById("reloadButton").style.display='inline-block';
+      document.getElementById("departementSelect").disabled=true;
+      document.getElementById("geolocateBtn").disabled=true;
+      const lf=document.getElementById("labelFilterSelect");
+      lf.style.display='inline-block';
+      lf.innerHTML='<option value="">Filtrer par N° maille</option>';
+      const max=Math.max(...fullData.features.map(f=>+f.properties.label_dsb));
+      for(let i=1; i<=max; i++){
+        const o=document.createElement("option"); o.value=i; o.text=i; lf.appendChild(o);
+      }
+      document.getElementById("subdivideBtn").style.display='inline-block';
+    }
+
+    function applyFilters(){
+      const lf = document.getElementById("labelFilterSelect").value;
+      activeRangs.clear();
+      document.querySelectorAll('#checkboxes input').forEach(cb=>{ if(cb.checked) activeRangs.add(+cb.value); });
+      if(mailleLayer) map.removeLayer(mailleLayer);
+      visibleLabels.clearLayers();
+      const filtered = fullData.features.filter(f=>{
+        if(!activeRangs.has(f.properties.rang_sourc||0)) return false;
+        if(lf && !f.properties.label_dsb.startsWith(lf)) return false;
+        return true;
+      });
+      mailleLayer = L.geoJSON(filtered,{
+        style:f=>({color:colors[f.properties.rang_sourc||0]||"#999",weight:1,fillOpacity:0.4}),
+        onEachFeature:(f,layer)=>{
+          const c=layer.getBounds().getCenter();
+          const rang = f.properties.rang_sourc||0;
+          const labelName = rang===0?"maille initiale":"Remplaçante "+rang;
+          L.marker(c,{icon:L.divIcon({className:'label-rang',html:f.properties.label_dsb,iconSize:[16,16]})})
+            .addTo(visibleLabels);
+          layer.bindPopup(`<b>${f.properties.CODE_1KM}</b><br>${labelName}`);
+        }
+      }).addTo(map);
+    }
+
+    function zoomToDepartement(code){
+      const feat=dptPolygons.features.find(f=>f.properties.insee_dep==code);
+      if(feat){ dptLayer.clearLayers().addData(feat); map.fitBounds(L.geoJSON(feat).getBounds()); }
+    }
+
+    function showMaillesForDept(code){
+      fullData = {...fullData,features:fullData.features.filter(f=>f.properties.ID_DEPT==code)};
+      applyFilters();
+    }
+
+    function toggleSubMailles(){
+      const btn=document.getElementById("subdivideBtn");
+      if(subdivLayer){ map.removeLayer(subdivLayer); subdivLayer=null; btn.textContent="Afficher sous-mailles"; return; }
+      fetch('geojson/mailles_250.geojson').then(r=>r.json()).then(data=>{
+        const codes=new Set(fullData.features.map(f=>f.properties.CODE_1KM));
+        subdivLayer = L.geoJSON(data.features.filter(f=>codes.has(f.properties.code_1km)),{
+          style:{color:'#1f78b4',weight:1,fillOpacity:0.2},
+          onEachFeature:(f,layer)=>{
+            const n = parseInt(f.properties.rang_tirag.slice(1),10);
+            const c = layer.getBounds().getCenter();
+            L.marker(c,{icon:L.divIcon({
+              className:'label-tirag',html:n,iconSize:[12,12],
+              iconAnchor:[0,0],style:'font-weight:'+(1000-(n-1)*60)
+            })}).addTo(map);
+          }
+        }).addTo(map);
+        btn.textContent="Masquer sous-mailles";
+      });
+    }
+
+    function geolocate(){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        const pt = turf.point([pos.coords.longitude, pos.coords.latitude]);
+        const cont = dptPolygons.features.find(f=>turf.booleanPointInPolygon(pt,f));
+        if(cont){
+          document.getElementById("departementSelect").value = cont.properties.insee_dep;
+          onDeptChange(cont.properties.insee_dep);
+        }
+        L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:6,color:'red'}).addTo(map)
+         .bindPopup("Vous êtes ici").openPopup();
+      },()=>alert("Géolocalisation impossible"));
+    }
 
     function showInstallInstructions(){
       alert("Pour ajouter Maill'haie à votre écran d'accueil, utilisez le menu du navigateur et sélectionnez 'Ajouter à l'écran d'accueil'.");
