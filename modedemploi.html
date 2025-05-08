@@ -5,31 +5,67 @@
   <title>Mode d'emploi – Maill'haie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Google Font Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    html, body { margin:0; padding:0; font-family:sans-serif; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
     #header {
-      position: fixed; top:0; left:0; right:0; height:60px; background:#fff;
-      border-bottom:1px solid #ccc; display:flex; align-items:center; justify-content:space-between;
-      padding:0 15px; z-index:1002;
+      position: fixed; top:0; left:0; right:0; height:60px;
+      background:#fff; border-bottom:1px solid #ddd;
+      display:flex; align-items:center; padding:0 20px; z-index:1002;
     }
     .brand { display:flex; align-items:center; }
     .tree-icon { font-size:1.5em; margin-right:8px; }
-    .brand-name { font-family:'Poppins',sans-serif; font-size:1.3em; font-weight:600; color:#2c3e50; }
-    .header-text { font-size:0.85em; color:#555; margin-left:10px; }
-    .icons a { margin-left:12px; font-size:1.3em; color:#333; text-decoration:none; }
-    /* Contenu */
-    #content { margin:80px 20px 20px; font-size:1em; color:#333; }
-    a { color:#2c3e50; text-decoration:none; }
+    .brand-name { font-size:1.2em; font-weight:600; color:#2c3e50; }
+    .header-text { font-size:0.85em; color:#777; margin-left:10px; }
+    .icons { margin-left:auto; }
+    .icons a { margin-left:12px; font-size:1.2em; color:#333; text-decoration:none; }
+
+    #content {
+      max-width: 600px;
+      margin: 80px auto 40px;
+      padding: 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+    h2 {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+      color: #2c3e50;
+    }
+    ul {
+      list-style: inside square;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.8em;
+    }
+    em {
+      color: #2c3e50;
+      font-style: normal;
+      font-weight: 600;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
   </style>
 </head>
 <body>
-
   <div id="header">
     <div class="brand">
       <span class="tree-icon">🌳</span>
       <span class="brand-name">Maill'haie</span>
-      <span class="header-text">Application de repérage des mailles DSB</span>
+      <span class="header-text">Application de repérage des mailles du suivi du bocage</span>
     </div>
     <div class="icons">
       <a href="modedemploi.html" title="Mode d'emploi">📖</a>
@@ -38,28 +74,20 @@
     </div>
   </div>
 
-
   <div id="content">
-    <p><strong>Mode d'emploi :</strong></p>
-<ul>
-  <li>Choisir un département en cliquant sur <em>Localisez-moi</em> ou bien</li>
-  <li>Sélectionner le département souhaité dans la liste déroulante.</li>
-  <li>le nom d'une maille est ainsi composé:</li>
-  <li>Numero de maille_departement-rang de remplacment   exemple 1_56_4  :  1ère maille du Morbihan remplaçante 4 </li>
-  <li>Pour les sous mailes la numérotation des 16 carrés de 250m est celle de l'ordre préférentiel</li>
-
-    <li>le choix des fonds de plan s'effectue en bas à gauche</li>
-
-
-
-</ul>
-
+    <h2>Mode d'emploi</h2>
+    <ul>
+      <li>Choisir un département en cliquant sur <em>Localisez-moi</em> ou dans la liste déroulante.</li>
+      <li>Le nom d’une maille s’écrit : <code>numéro_maile_département-rang</code>, par exemple <code>1_56_4</code> est la 1ʳᵉ maille du Morbihan en rang 4.</li>
+      <li>Pour les sous-mailles (16 carrés de 250 m), la numérotation suit l’ordre préférentiel de 1 à 16.</li>
+      <li>Le choix des fonds de plan se fait via le sélecteur situé en bas à gauche de la carte.</li>
+    </ul>
   </div>
 
-<script>
-  function showInstallInstructions() {
-    alert("Pour ajouter Maill'haie à votre écran d'accueil, utilisez le menu du navigateur et sélectionnez 'Ajouter à l'écran d'accueil'.");
-  }
-</script>
+  <script>
+    function showInstallInstructions() {
+      alert("Pour ajouter Maill'haie à votre écran d’accueil, ouvrez le menu du navigateur puis choisissez « Ajouter à l’écran d’accueil »."); 
+    }
+  </script>
 </body>
 </html>
