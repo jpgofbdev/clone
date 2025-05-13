@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Maill'haie interactive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Font Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
+<meta charset="utf-8"/>
+<title>Maill'haie interactive</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Google Font Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<!-- Leaflet CSS -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+<style>
     html, body { margin:0; padding:0; height:100%; font-family:'Poppins',sans-serif; }
     #header { position:fixed; top:0; left:0; right:0; height:60px; background:#fff;
       border-bottom:1px solid #ccc; display:flex; align-items:center; justify-content:space-between; padding:0 15px; z-index:1002; }
@@ -32,44 +33,40 @@
       box-shadow: 0 0 4px rgba(0,0,0,0.3); }
     .leaflet-control-search input { width: 150px; padding: 2px 4px; font-size: 12px; }
   </style>
-</head>
+</link></head>
 <body>
-  <div id="header">
-    <div class="brand">
-      <span class="tree-icon">🌳</span>
-      <span class="brand-name">Maill'haie</span>
-      <span class="header-text">Application de repérage des mailles DSB</span>
-    </div>
-    <div class="icons">
-      <a href="modedemploi.html" title="Mode d'emploi">📖</a>
-      <a href="information.html" title="Informations">ℹ️</a>
-      <a href="#" onclick="showInstallInstructions()" title="Ajouter à l'accueil">📱</a>
-    </div>
-  </div>
-
-  <div id="controls">
-    <button id="geolocateBtn" onclick="geolocate()">📍 Localisez-moi</button>
-    <button id="reloadButton" style="display:none" onclick="location.reload()">Changer de département</button>
-    <select id="departementSelect" onchange="onDeptChange(this.value)">
-      <option value="">-- Choisir un département --</option>
-    </select>
-    <select id="labelFilterSelect" style="display:none;" onchange="applyFilters()">
-      <option value="">Filtrer par N° maille</option>
-    </select>
-    <button id="subdivideBtn" style="display:none;" onclick="toggleSubMailles()">Afficher sous-mailles</button>
-  </div>
-
-  <div id="legend">
-    <strong>Afficher :</strong><br/>
-    <div id="checkboxes"></div>
-  </div>
-
-  <div id="map"></div>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js"></script>
-  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-  <script>
+<div id="header">
+<div class="brand">
+<span class="tree-icon">🌳</span>
+<span class="brand-name">Maill'haie</span>
+<span class="header-text">Application de repérage des mailles DSB</span>
+</div>
+<div class="icons">
+<a href="modedemploi.html" title="Mode d'emploi">📖</a>
+<a href="information.html" title="Informations">ℹ️</a>
+<a href="#" onclick="showInstallInstructions()" title="Ajouter à l'accueil">📱</a>
+</div>
+</div>
+<div id="controls">
+<button id="geolocateBtn" onclick="geolocate()">📍 Localisez-moi</button>
+<button id="reloadButton" onclick="location.reload()" style="display:none">Changer de département</button>
+<select id="departementSelect" onchange="onDeptChange(this.value)">
+<option value="">-- Choisir un département --</option>
+</select>
+<select id="labelFilterSelect" onchange="applyFilters()" style="display:none;">
+<option value="">Filtrer par N° maille</option>
+</select>
+<button id="subdivideBtn" onclick="toggleSubMailles()" style="display:none;">Afficher sous-mailles</button>
+</div>
+<div id="legend">
+<strong>Afficher :</strong><br/>
+<div id="checkboxes"></div>
+</div>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js"></script>
+<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+<script>
     const map = L.map('map',{zoomControl:false}).setView([46.6,2.5],6);
     Gp.Services.getConfig({
       apiKey:"essentiels",
@@ -105,8 +102,8 @@
       const cb=document.getElementById('checkboxes');
       Object.entries(colors).forEach(([rang,color])=>{
         const lbl=document.createElement('label');
-        lbl.innerHTML=`<div class="color-box" style="background:${color}"></div>
-          <input type="checkbox" value="${rang}" checked onchange="applyFilters()"/>${rang===0?'maille initiale':'Remplaçante '+rang}`;
+        lbl.innerHTML = `<div class="color-box" style="background:${color}"></div>
+    <input type="checkbox" value="${rang}" checked onchange="applyFilters()"/>${rang == 0 ? 'maille initiale' : 'Remplaçante ' + rang}`;
         cb.appendChild(lbl);
       });
     });
