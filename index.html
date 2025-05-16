@@ -80,8 +80,8 @@
     });
 
     const colors={0:'#FFD700',1:'#1f78b4',2:'#33a02c',3:'#e31a1c',4:'#ff7f00',5:'#6a3d9a'};
-    const activeRangs=new Set([0,1,2,3,4,5]);
-    let dptPolygons, fullData, mailleLayer, subdivLayer;
+    const activeRangs=new Set([0]);
+    let dptPolygons, allMaillesData, fullData, mailleLayer, subdivLayer;
     const dptLayer=L.geoJSON(null,{style:{color:'#33cc33',weight:2,fillColor:'#33cc33',fillOpacity:0.05}}).addTo(map);
     const visibleLabels=L.layerGroup().addTo(map);
 
@@ -97,15 +97,15 @@
         });
     });
 
-    fetch('geojson/remplacantes_label.geojson').then(r=>r.json()).then(data=>{
+    fetch('geojson/remplacantes_label.geojson').then(r=>r.json()).then(data=>{ allMaillesData = data;
       fullData=data;
       const cb=document.getElementById('checkboxes');
-      Object.entries(colors).forEach(([rang,color])=>{
+      
         const lbl=document.createElement('label');
-        lbl.innerHTML = `<div class="color-box" style="background:${color}"></div>
-    <input type="checkbox" value="${rang}" checked onchange="applyFilters()"/>${rang == 0 ? 'maille initiale' : 'Remplaçante ' + rang}`;
-        cb.appendChild(lbl);
-      });
+        lbl.innerHTML = `<div class="color-box" style="background:${colors[0]}"></div>
+<input type="checkbox" value="0" checked onchange="applyFilters()"/>maille initiale`;
+        document.getElementById('checkboxes').appendChild(lbl);
+
     });
 
     function addSearchControl(){
@@ -168,7 +168,7 @@
       const filtered=fullData.features.filter(f=>{
         const prefix=f.properties.label_dsb.split('_')[0];
         if(lf && prefix!==lf) return false;
-        return activeRangs.has(f.properties.rang_sourc||0);
+        return (f.properties.rang_sourc||0) === 0;
       });
       mailleLayer=L.geoJSON(filtered,{
         style:f=>({color:colors[f.properties.rang_sourc||0]||'#999',weight:1,fillOpacity:0.4}),
@@ -186,7 +186,10 @@
     }
 
     function showMaillesForDept(code){
-      fullData={...fullData,features:fullData.features.filter(f=>f.properties.ID_DEPT==code)};
+      
+      const deptFeatures = allMaillesData.features.filter(f=>f.properties.ID_DEPT==code);
+      fullData = {...allMaillesData, features: deptFeatures};
+    
       applyFilters();
     }
 
