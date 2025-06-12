@@ -1,1 +1,158 @@
-function _0x472e(_0x297518,_0x5b3a0a){const _0x9bbb7d=_0x9bbb();return _0x472e=function(_0x472e74,_0x141745){_0x472e74=_0x472e74-0x67;let _0x4eda61=_0x9bbb7d[_0x472e74];return _0x4eda61;},_0x472e(_0x297518,_0x5b3a0a);}const _0xbd3a13=_0x472e;(function(_0xbe4f12,_0x4098ba){const _0x35fd2e=_0x472e,_0x4ce813=_0xbe4f12();while(!![]){try{const _0x22dcdb=-parseInt(_0x35fd2e(0x71))/0x1*(-parseInt(_0x35fd2e(0x7a))/0x2)+parseInt(_0x35fd2e(0xde))/0x3*(-parseInt(_0x35fd2e(0xce))/0x4)+parseInt(_0x35fd2e(0xa9))/0x5+-parseInt(_0x35fd2e(0x85))/0x6+parseInt(_0x35fd2e(0xdb))/0x7+-parseInt(_0x35fd2e(0xaf))/0x8+-parseInt(_0x35fd2e(0x93))/0x9*(-parseInt(_0x35fd2e(0xa3))/0xa);if(_0x22dcdb===_0x4098ba)break;else _0x4ce813['push'](_0x4ce813['shift']());}catch(_0x55a386){_0x4ce813['push'](_0x4ce813['shift']());}}}(_0x9bbb,0x89074));const map=L[_0xbd3a13(0xac)]('map',{'zoomControl':![]})[_0xbd3a13(0xab)]([46.6,2.5],0x6);Gp[_0xbd3a13(0xdc)][_0xbd3a13(0x90)]({'apiKey':_0xbd3a13(0x98),'onSuccess':_0x24dea9=>{const _0x37d3d7=_0xbd3a13,_0x294efc=L[_0x37d3d7(0xa1)](_0x37d3d7(0xda),{'attribution':_0x37d3d7(0x80)})[_0x37d3d7(0xc2)](map),_0x1ec4ad=L[_0x37d3d7(0x86)]['WMTS']({'layer':_0x37d3d7(0xc3)}),_0x43fc2b=L['geoportalLayer'][_0x37d3d7(0x87)]({'layer':_0x37d3d7(0xad)});L[_0x37d3d7(0xa8)]['layers']({'OSM':_0x294efc,'Ortho':_0x1ec4ad,'Plan':_0x43fc2b},null,{'position':'bottomleft'})[_0x37d3d7(0xc2)](map),addSearchControl();}});const colors={0x0:_0xbd3a13(0xb2),0x1:_0xbd3a13(0xca),0x2:_0xbd3a13(0x6d),0x3:_0xbd3a13(0xc0),0x4:_0xbd3a13(0x9d),0x5:_0xbd3a13(0xbb)},activeRangs=new Set([0x0]);let dptPolygons,allMaillesData,fullData,mailleLayer,subdivLayer;const dptLayer=L[_0xbd3a13(0xdd)](null,{'style':{'color':_0xbd3a13(0xcc),'weight':0x2,'fillColor':'#33cc33','fillOpacity':0.05}})['addTo'](map),visibleLabels=L[_0xbd3a13(0x79)]()['addTo'](map);fetch(_0xbd3a13(0xb5))[_0xbd3a13(0x88)](_0x4a5a02=>_0x4a5a02[_0xbd3a13(0xc9)]())[_0xbd3a13(0x88)](_0x3616b3=>{const _0x49461c=_0xbd3a13;dptPolygons=_0x3616b3;const _0x293758=document[_0x49461c(0x69)](_0x49461c(0x6c));_0x3616b3[_0x49461c(0xc8)]['sort']((_0xceff1e,_0x472632)=>_0xceff1e[_0x49461c(0x97)][_0x49461c(0xbd)]['localeCompare'](_0x472632[_0x49461c(0x97)][_0x49461c(0xbd)]))[_0x49461c(0x83)](_0x3877b7=>{const _0x1ca6fe=_0x49461c,_0x450c02=document[_0x1ca6fe(0xbe)](_0x1ca6fe(0x92));_0x450c02[_0x1ca6fe(0xaa)]=_0x3877b7[_0x1ca6fe(0x97)][_0x1ca6fe(0x76)],_0x450c02['text']=_0x3877b7[_0x1ca6fe(0x97)]['nom_m']+'\x20('+_0x3877b7[_0x1ca6fe(0x97)][_0x1ca6fe(0x76)]+')',_0x293758[_0x1ca6fe(0xb8)](_0x450c02);});}),fetch('geojson/remplacantes_label.geojson')[_0xbd3a13(0x88)](_0x1f70cd=>_0x1f70cd['json']())[_0xbd3a13(0x88)](_0x1ea921=>{const _0x41f3a3=_0xbd3a13;allMaillesData=_0x1ea921,fullData=_0x1ea921;const _0x164332=document[_0x41f3a3(0x69)](_0x41f3a3(0x8e)),_0x531ea4=document[_0x41f3a3(0xbe)](_0x41f3a3(0xd6));_0x531ea4[_0x41f3a3(0xbf)]=_0x41f3a3(0x8b)+colors[0x0]+'\x22></div>\x0a<input\x20type=\x22checkbox\x22\x20value=\x220\x22\x20checked\x20onchange=\x22applyFilters()\x22/>maille\x20initiale',document['getElementById'](_0x41f3a3(0x8e))[_0x41f3a3(0xb8)](_0x531ea4);});function addSearchControl(){const _0x274c01=_0xbd3a13,_0x484b8e=L[_0x274c01(0x67)][_0x274c01(0x75)]({'options':{'position':'bottomleft'},'onAdd':()=>{const _0x1eeb48=_0x274c01,_0x52fa06=L[_0x1eeb48(0x6e)][_0x1eeb48(0xb9)](_0x1eeb48(0xa4),_0x1eeb48(0x8a));return _0x52fa06[_0x1eeb48(0xbf)]=_0x1eeb48(0x73),L[_0x1eeb48(0x6b)][_0x1eeb48(0x91)](_0x52fa06),_0x52fa06;}});map[_0x274c01(0xb4)](new _0x484b8e());const _0x367dd7=document[_0x274c01(0x69)]('searchCommune'),_0x931277=document[_0x274c01(0x69)]('suggestions');_0x367dd7[_0x274c01(0xc6)]('input',()=>{const _0x51b173=_0x274c01,_0x17bcad=_0x367dd7[_0x51b173(0xaa)];if(_0x17bcad[_0x51b173(0xd7)]<0x3)return;fetch(_0x51b173(0x8c)+encodeURIComponent(_0x17bcad)+_0x51b173(0x95))[_0x51b173(0x88)](_0x55d20f=>_0x55d20f[_0x51b173(0xc9)]())[_0x51b173(0x88)](_0x47a1b8=>{const _0x19e0aa=_0x51b173;_0x931277[_0x19e0aa(0xbf)]='',_0x47a1b8[_0x19e0aa(0xc8)][_0x19e0aa(0x83)](_0xc06ab3=>{const _0x352e1e=_0x19e0aa,_0x5a9a1b=document['createElement'](_0x352e1e(0x92));_0x5a9a1b[_0x352e1e(0xaa)]=_0xc06ab3[_0x352e1e(0x97)]['name'],_0x5a9a1b[_0x352e1e(0x9a)][_0x352e1e(0xc7)]=_0xc06ab3[_0x352e1e(0x7f)]['coordinates'][0x1],_0x5a9a1b[_0x352e1e(0x9a)][_0x352e1e(0xd5)]=_0xc06ab3['geometry'][_0x352e1e(0x72)][0x0],_0x931277[_0x352e1e(0xb8)](_0x5a9a1b);});});}),_0x367dd7[_0x274c01(0xc6)](_0x274c01(0x9f),()=>{const _0x4c1e83=_0x274c01,_0x43e94d=_0x367dd7[_0x4c1e83(0xaa)];Array[_0x4c1e83(0xa0)](_0x931277[_0x4c1e83(0x99)])['forEach'](_0x649ff4=>{const _0x4d4106=_0x4c1e83;if(_0x649ff4[_0x4d4106(0xaa)]===_0x43e94d)map['setView']([_0x649ff4[_0x4d4106(0x9a)][_0x4d4106(0xc7)],_0x649ff4['dataset'][_0x4d4106(0xd5)]],0xc);});});}function onDeptChange(_0x12ee14){const _0x37d405=_0xbd3a13;if(!_0x12ee14)return;zoomToDepartement(_0x12ee14),showMaillesForDept(_0x12ee14),document[_0x37d405(0x69)](_0x37d405(0x9e))['style'][_0x37d405(0x8f)]='inline-block',document[_0x37d405(0x69)](_0x37d405(0x6c))[_0x37d405(0xd8)]=!![],document[_0x37d405(0x69)]('geolocateBtn')['disabled']=!![];const _0x413f27=document[_0x37d405(0x69)](_0x37d405(0xd3));_0x413f27[_0x37d405(0xa2)]['display']=_0x37d405(0xcf),_0x413f27[_0x37d405(0xbf)]='<option\x20value=\x22\x22>Filtrer\x20par\x20N°\x20maille</option>';const _0x5bab58=[...new Set(fullData[_0x37d405(0xc8)][_0x37d405(0xac)](_0x2ec521=>_0x2ec521[_0x37d405(0x97)][_0x37d405(0xb7)][_0x37d405(0xcd)]('_')[0x0]))][_0x37d405(0xa6)]((_0xb5e445,_0x2a4056)=>_0xb5e445-_0x2a4056);_0x5bab58[_0x37d405(0x83)](_0x2dfe45=>{const _0x3848e8=_0x37d405,_0x2f0f39=document[_0x3848e8(0xbe)](_0x3848e8(0x92));_0x2f0f39['value']=_0x2dfe45,_0x2f0f39[_0x3848e8(0x81)]=_0x2dfe45,_0x413f27[_0x3848e8(0xb8)](_0x2f0f39);}),document[_0x37d405(0x69)](_0x37d405(0xd0))[_0x37d405(0xa2)][_0x37d405(0x8f)]=_0x37d405(0xcf);}function _0x9bbb(){const _0x41c629=['ORTHOIMAGERY.ORTHOPHOTOS','checked','font-weight:','addEventListener','lat','features','json','#1f78b4','latitude','#33cc33','split','3656TJTXID','inline-block','subdivideBtn','<b>','slice','labelFilterSelect','code_1km','lon','label','length','disabled','coords','https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png','5211339DvHKwO','Services','geoJSON','2823UaaxQK','Control','Pour\x20ajouter\x20Maill\x27haie\x20à\x20votre\x20écran\x20d\x27accueil,\x20utilisez\x20le\x20menu\x20du\x20navigateur\x20et\x20sélectionnez\x20\x27Ajouter\x20à\x20l\x27écran\x20d\x27accueil\x27.','getElementById','point','DomEvent','departementSelect','#33a02c','DomUtil','clear','#checkboxes\x20input','66wWNOaX','coordinates','<input\x20id=\x22searchCommune\x22\x20list=\x22suggestions\x22\x20placeholder=\x22Commune\x22\x20autocomplete=\x22off\x22/><datalist\x20id=\x22suggestions\x22></datalist>','red','extend','insee_dep','</b><br/>Rang:\x20','find','layerGroup','6158AFuYVm','Vous\x20êtes\x20ici','querySelectorAll','bindPopup','circleMarker','geometry','©\x20OSM','text','rang_tirag','forEach','getCurrentPosition','4226994blDste','geoportalLayer','WMTS','then','booleanPointInPolygon','leaflet-control-search','<div\x20class=\x22color-box\x22\x20style=\x22background:','https://api-adresse.data.gouv.fr/search/?q=','removeLayer','checkboxes','display','getConfig','disableClickPropagation','option','7527393mEGpEs','openPopup','&type=municipality','divIcon','properties','essentiels','options','dataset','marker','#999','#ff7f00','reloadButton','change','from','tileLayer','style','20NhROSd','div','CODE_1KM','sort','getBounds','control','962690MYDNHN','value','setView','map','GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2','label-rang','5497136fNuxsK','rang_sourc','Géolocalisation\x20impossible','#FFD700','textContent','addControl','geojson/dpt_4326_simplif100.geojson','filter','label_dsb','appendChild','create','getCenter','#6a3d9a','clearLayers','nom_m','createElement','innerHTML','#e31a1c','longitude','addTo'];_0x9bbb=function(){return _0x41c629;};return _0x9bbb();}function applyFilters(){const _0x2c2646=_0xbd3a13,_0x5bf639=document[_0x2c2646(0x69)](_0x2c2646(0xd3))['value'];activeRangs[_0x2c2646(0x6f)](),document[_0x2c2646(0x7c)](_0x2c2646(0x70))['forEach'](_0x2ef54a=>{const _0x353553=_0x2c2646;if(_0x2ef54a[_0x353553(0xc4)])activeRangs['add'](+_0x2ef54a[_0x353553(0xaa)]);});if(mailleLayer)map[_0x2c2646(0x8d)](mailleLayer);visibleLabels[_0x2c2646(0xbc)]();const _0x1fa5b4=fullData[_0x2c2646(0xc8)][_0x2c2646(0xb6)](_0x3a9e76=>{const _0x37641f=_0x2c2646,_0x31077d=_0x3a9e76[_0x37641f(0x97)][_0x37641f(0xb7)]['split']('_')[0x0];if(_0x5bf639&&_0x31077d!==_0x5bf639)return![];return(_0x3a9e76[_0x37641f(0x97)][_0x37641f(0xb0)]||0x0)===0x0;});mailleLayer=L[_0x2c2646(0xdd)](_0x1fa5b4,{'style':_0x4543bd=>({'color':colors[_0x4543bd[_0x2c2646(0x97)][_0x2c2646(0xb0)]||0x0]||_0x2c2646(0x9c),'weight':0x1,'fillOpacity':0.4}),'onEachFeature':(_0x1cff99,_0x35e57f)=>{const _0x341a24=_0x2c2646,_0x2b3f48=_0x35e57f[_0x341a24(0xa7)]()[_0x341a24(0xba)]();L[_0x341a24(0x9b)](_0x2b3f48,{'icon':L[_0x341a24(0x96)]({'className':_0x341a24(0xae),'html':_0x1cff99[_0x341a24(0x97)]['label_dsb'],'iconSize':[0x10,0x10]})})[_0x341a24(0xc2)](visibleLabels),_0x35e57f[_0x341a24(0x7d)](_0x341a24(0xd1)+_0x1cff99[_0x341a24(0x97)][_0x341a24(0xa5)]+_0x341a24(0x77)+(_0x1cff99['properties'][_0x341a24(0xb0)]||0x0));}})[_0x2c2646(0xc2)](map);}function zoomToDepartement(_0x427f25){const _0x2ff47b=_0xbd3a13,_0x132b61=dptPolygons['features'][_0x2ff47b(0x78)](_0x48325e=>_0x48325e[_0x2ff47b(0x97)][_0x2ff47b(0x76)]==_0x427f25);_0x132b61&&(dptLayer[_0x2ff47b(0xbc)]()['addData'](_0x132b61),map['fitBounds'](L[_0x2ff47b(0xdd)](_0x132b61)['getBounds']()));}function showMaillesForDept(_0xb25a4d){const _0x398132=_0xbd3a13,_0x1b8cad=allMaillesData[_0x398132(0xc8)][_0x398132(0xb6)](_0x5c3487=>_0x5c3487[_0x398132(0x97)]['ID_DEPT']==_0xb25a4d);fullData={...allMaillesData,'features':_0x1b8cad},applyFilters();}function toggleSubMailles(){const _0x3b22ed=_0xbd3a13,_0x5846ff=document[_0x3b22ed(0x69)](_0x3b22ed(0xd0));if(subdivLayer){map[_0x3b22ed(0x8d)](subdivLayer),subdivLayer=null,_0x5846ff[_0x3b22ed(0xb3)]='Afficher\x20sous-mailles';return;}fetch('geojson/mailles_250.geojson')[_0x3b22ed(0x88)](_0x1c0af1=>_0x1c0af1[_0x3b22ed(0xc9)]())[_0x3b22ed(0x88)](_0x36aedc=>{const _0x466914=_0x3b22ed,_0x5d97ec=new Set(fullData[_0x466914(0xc8)][_0x466914(0xac)](_0x39b2c2=>_0x39b2c2['properties'][_0x466914(0xa5)]));subdivLayer=L[_0x466914(0xdd)](_0x36aedc['features'][_0x466914(0xb6)](_0x33caae=>_0x5d97ec['has'](_0x33caae[_0x466914(0x97)][_0x466914(0xd4)])),{'style':{'color':'#1f78b4','weight':0x1,'fillOpacity':0.2},'onEachFeature':(_0x396b9c,_0x56b029)=>{const _0x2d692b=_0x466914,_0x3f3722=parseInt(_0x396b9c['properties'][_0x2d692b(0x82)][_0x2d692b(0xd2)](0x1),0xa),_0x256fec=_0x56b029[_0x2d692b(0xa7)]()[_0x2d692b(0xba)]();L[_0x2d692b(0x9b)](_0x256fec,{'icon':L[_0x2d692b(0x96)]({'className':'label-tirag','html':_0x3f3722,'iconSize':[0xc,0xc],'style':_0x2d692b(0xc5)+(0x3e8-(_0x3f3722-0x1)*0x3c)})})['addTo'](map);}})[_0x466914(0xc2)](map),_0x5846ff[_0x466914(0xb3)]='Masquer\x20sous-mailles';});}function geolocate(){const _0x37ceb3=_0xbd3a13;navigator['geolocation'][_0x37ceb3(0x84)](_0x1a6938=>{const _0x18cbc8=_0x37ceb3,_0x5c3f09=turf[_0x18cbc8(0x6a)]([_0x1a6938[_0x18cbc8(0xd9)][_0x18cbc8(0xc1)],_0x1a6938[_0x18cbc8(0xd9)][_0x18cbc8(0xcb)]]),_0x42df49=dptPolygons[_0x18cbc8(0xc8)][_0x18cbc8(0x78)](_0x4d1c49=>turf[_0x18cbc8(0x89)](_0x5c3f09,_0x4d1c49));_0x42df49&&(document['getElementById'](_0x18cbc8(0x6c))['value']=_0x42df49[_0x18cbc8(0x97)][_0x18cbc8(0x76)],onDeptChange(_0x42df49[_0x18cbc8(0x97)][_0x18cbc8(0x76)])),L[_0x18cbc8(0x7e)]([_0x1a6938['coords'][_0x18cbc8(0xcb)],_0x1a6938[_0x18cbc8(0xd9)][_0x18cbc8(0xc1)]],{'radius':0x6,'color':_0x18cbc8(0x74)})['addTo'](map)['bindPopup'](_0x18cbc8(0x7b))[_0x18cbc8(0x94)]();},()=>alert(_0x37ceb3(0xb1)));}function showInstallInstructions(){const _0x5bb88c=_0xbd3a13;alert(_0x5bb88c(0x68));}
+
+    const map = L.map('map',{zoomControl:false}).setView([46.6,2.5],6);
+    Gp.Services.getConfig({
+      apiKey:"essentiels",
+      onSuccess:config=>{
+        const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
+        const ortho=L.geoportalLayer.WMTS({layer:"ORTHOIMAGERY.ORTHOPHOTOS"});
+        const plan=L.geoportalLayer.WMTS({layer:"GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2"});
+        L.control.layers({OSM:osm,Ortho:ortho,Plan:plan},null,{position:'bottomleft'}).addTo(map);
+        addSearchControl();
+      }
+    });
+
+    const colors={0:'#FFD700',1:'#1f78b4',2:'#33a02c',3:'#e31a1c',4:'#ff7f00',5:'#6a3d9a'};
+    const activeRangs=new Set([0]);
+    let dptPolygons, allMaillesData, fullData, mailleLayer, subdivLayer;
+    const dptLayer=L.geoJSON(null,{style:{color:'#33cc33',weight:2,fillColor:'#33cc33',fillOpacity:0.05}}).addTo(map);
+    const visibleLabels=L.layerGroup().addTo(map);
+
+    fetch('geojson/dpt_4326_simplif100.geojson').then(r=>r.json()).then(data=>{
+      dptPolygons=data;
+      const sel=document.getElementById('departementSelect');
+      data.features.sort((a,b)=>a.properties.nom_m.localeCompare(b.properties.nom_m))
+        .forEach(f=>{
+          const o=document.createElement('option');
+          o.value=f.properties.insee_dep;
+          o.text=`${f.properties.nom_m} (${f.properties.insee_dep})`;
+          sel.appendChild(o);
+        });
+    });
+
+    fetch('geojson/remplacantes_label.geojson').then(r=>r.json()).then(data=>{ allMaillesData = data;
+      fullData=data;
+      const cb=document.getElementById('checkboxes');
+      
+        const lbl=document.createElement('label');
+        lbl.innerHTML = `<div class="color-box" style="background:${colors[0]}"></div>
+<input type="checkbox" value="0" checked onchange="applyFilters()"/>maille initiale`;
+        document.getElementById('checkboxes').appendChild(lbl);
+
+    });
+
+    function addSearchControl(){
+      const SearchControl=L.Control.extend({
+        options:{position:'bottomleft'},
+        onAdd:()=>{const div=L.DomUtil.create('div','leaflet-control-search');
+          div.innerHTML='<input id="searchCommune" list="suggestions" placeholder="Commune" autocomplete="off"/><datalist id="suggestions"></datalist>';
+          L.DomEvent.disableClickPropagation(div);
+          return div;
+        }
+      });
+      map.addControl(new SearchControl());
+      const input=document.getElementById('searchCommune');
+      const dl=document.getElementById('suggestions');
+      input.addEventListener('input',()=>{
+        const v=input.value; if(v.length<3) return;
+        fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(v)}&type=municipality`)
+          .then(r=>r.json()).then(data=>{
+            dl.innerHTML=''; data.features.forEach(f=>{
+              const opt=document.createElement('option');
+              opt.value=f.properties.name;
+              opt.dataset.lat=f.geometry.coordinates[1];
+              opt.dataset.lon=f.geometry.coordinates[0];
+              dl.appendChild(opt);
+            });
+          });
+      });
+      input.addEventListener('change',()=>{
+        const val=input.value;
+        Array.from(dl.options).forEach(opt=>{if(opt.value===val)map.setView([opt.dataset.lat,opt.dataset.lon],12);});
+      });
+    }
+
+    function onDeptChange(code){
+      if(!code) return;
+      zoomToDepartement(code);
+      showMaillesForDept(code);
+      document.getElementById('reloadButton').style.display='inline-block';
+      document.getElementById('departementSelect').disabled=true;
+      document.getElementById('geolocateBtn').disabled=true;
+      const lf=document.getElementById('labelFilterSelect');
+      lf.style.display='inline-block';
+      lf.innerHTML='<option value="">Filtrer par N° maille</option>';
+      // remplir avec les préfixes disponibles
+      const prefixes=[...new Set(fullData.features.map(f=>f.properties.label_dsb.split('_')[0]))]
+        .sort((a,b)=>a-b);
+      prefixes.forEach(p=>{
+        const o=document.createElement('option');
+        o.value=p; o.text=p; lf.appendChild(o);
+      });
+      document.getElementById('subdivideBtn').style.display='inline-block';
+    }
+
+    function applyFilters(){
+      const lf=document.getElementById('labelFilterSelect').value;
+      activeRangs.clear();
+      document.querySelectorAll('#checkboxes input').forEach(cb=>{ if(cb.checked) activeRangs.add(+cb.value); });
+      if(mailleLayer) map.removeLayer(mailleLayer);
+      visibleLabels.clearLayers();
+      const filtered=fullData.features.filter(f=>{
+        const prefix=f.properties.label_dsb.split('_')[0];
+        if(lf && prefix!==lf) return false;
+        return (f.properties.rang_sourc||0) === 0;
+      });
+      mailleLayer=L.geoJSON(filtered,{
+        style:f=>({color:colors[f.properties.rang_sourc||0]||'#999',weight:1,fillOpacity:0.4}),
+        onEachFeature:(f,layer)=>{const c=layer.getBounds().getCenter();
+          L.marker(c,{icon:L.divIcon({className:'label-rang',html:f.properties.label_dsb,iconSize:[16,16]})})
+            .addTo(visibleLabels);
+          layer.bindPopup(`<b>${f.properties.CODE_1KM}</b><br/>Rang: ${f.properties.rang_sourc||0}`);
+        }
+      }).addTo(map);
+    }
+
+    function zoomToDepartement(code){
+      const feat=dptPolygons.features.find(f=>f.properties.insee_dep==code);
+      if(feat){dptLayer.clearLayers().addData(feat);map.fitBounds(L.geoJSON(feat).getBounds());}
+    }
+
+    function showMaillesForDept(code){
+      
+      const deptFeatures = allMaillesData.features.filter(f=>f.properties.ID_DEPT==code);
+      fullData = {...allMaillesData, features: deptFeatures};
+    
+      applyFilters();
+    }
+
+    function toggleSubMailles(){
+      const btn=document.getElementById('subdivideBtn');
+      if(subdivLayer){ map.removeLayer(subdivLayer); subdivLayer=null; btn.textContent='Afficher sous-mailles'; return; }
+      fetch('geojson/mailles_250.geojson').then(r=>r.json()).then(data=>{
+        const codes=new Set(fullData.features.map(f=>f.properties.CODE_1KM));
+        subdivLayer=L.geoJSON(data.features.filter(f=>codes.has(f.properties.code_1km)),{
+          style:{color:'#1f78b4',weight:1,fillOpacity:0.2},
+          onEachFeature:(f,layer)=>{const n=parseInt(f.properties.rang_tirag.slice(1),10);
+            const c=layer.getBounds().getCenter();
+            L.marker(c,{icon:L.divIcon({className:'label-tirag',html:n,iconSize:[12,12],style:'font-weight:'+(1000-(n-1)*60)})})
+              .addTo(map);
+          }
+        }).addTo(map);
+        btn.textContent='Masquer sous-mailles';
+      });
+    }
+
+    function geolocate(){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        const pt=turf.point([pos.coords.longitude,pos.coords.latitude]);
+        const cont=dptPolygons.features.find(f=>turf.booleanPointInPolygon(pt,f));
+        if(cont){document.getElementById('departementSelect').value=cont.properties.insee_dep; onDeptChange(cont.properties.insee_dep);}
+        L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:6,color:'red'}).addTo(map)
+          .bindPopup('Vous êtes ici').openPopup();
+      },()=>alert('Géolocalisation impossible'));
+    }
+
+    function showInstallInstructions(){
+      alert("Pour ajouter Maill'haie à votre écran d'accueil, utilisez le menu du navigateur et sélectionnez 'Ajouter à l'écran d'accueil'.");
+    }
+  
