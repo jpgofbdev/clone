@@ -1,71 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<title>Maill'haie interactive</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Google Font Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<!-- Leaflet CSS -->
-<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
-<style>
-    html, body { margin:0; padding:0; height:100%; font-family:'Poppins',sans-serif; }
-    #header { position:fixed; top:0; left:0; right:0; height:60px; background:#fff;
-      border-bottom:1px solid #ccc; display:flex; align-items:center; justify-content:space-between; padding:0 15px; z-index:1002; }
-    .brand { display:flex; align-items:center; }
-    .tree-icon { font-size:1.3em; margin-right:6px; }
-    .brand-name { font-size:1.1em; font-weight:600; color:#2c3e50; }
-    .header-text { font-size:0.75em; color:#555; margin-left:8px; }
-    .icons a { margin-left:10px; font-size:1.1em; color:#333; text-decoration:none; }
-    #controls { position:absolute; top:70px; left:8px; max-width:220px; background:white; padding:8px;
-      border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2); z-index:1001; font-size:11px; }
-    #controls select, #controls button { width:85%; margin-top:5px; }
-    #legend { position:absolute; top:70px; right:8px; background:white; padding:8px;
-      border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.2); z-index:1001; font-size:11px; }
-    #legend label { display:flex; align-items:center; margin-bottom:4px; }
-    .color-box { width:13px; height:13px; margin-right:6px; border:1px solid #333; }
-    #map { position:absolute; top:60px; bottom:0; left:0; right:0; }
-    .label-rang { font-size:11px; font-weight:bold; color:black;
-      text-shadow:1px 1px 1px white,-1px 1px 1px white,1px -1px 1px white,-1px -1px 1px white;
-      transform: translateX(6px); pointer-events:none; }
-    .leaflet-control-search { background: white; padding: 4px; border-radius: 4px;
-      box-shadow: 0 0 4px rgba(0,0,0,0.3); }
-    .leaflet-control-search input { width: 150px; padding: 2px 4px; font-size: 12px; }
+  <meta charset="UTF-8">
+  <title>Test GitHub Pages</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
   </style>
-</link></head>
+</head>
 <body>
-<div id="header">
-<div class="brand">
-<span class="tree-icon">🌳</span>
-<span class="brand-name">Maill'haie</span>
-<span class="header-text">Application de repérage des mailles DSB</span>
-</div>
-<div class="icons">
-<a href="modedemploi.html" title="Mode d'emploi">📖</a>
-<a href="information.html" title="Informations">ℹ️</a>
-<a href="#" onclick="showInstallInstructions()" title="Ajouter à l'accueil">📱</a>
-</div>
-</div>
-<div id="controls">
-<button id="geolocateBtn" onclick="geolocate()">📍 Localisez-moi</button>
-<button id="reloadButton" onclick="location.reload()" style="display:none">Changer de département</button>
-<select id="departementSelect" onchange="onDeptChange(this.value)">
-<option value="">-- Choisir un département --</option>
-</select>
-<select id="labelFilterSelect" onchange="applyFilters()" style="display:none;">
-<option value="">Filtrer par N° maille</option>
-</select>
-<button id="subdivideBtn" onclick="toggleSubMailles()" style="display:none;">Afficher sous-mailles</button>
-</div>
-<div id="legend">
-<strong>Afficher :</strong><br/>
-<div id="checkboxes"></div>
-</div>
-<div id="map"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js"></script>
-<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-<script src="jsfunctions.js"></script>
+  <h1>✅ Site GitHub Pages opérationnel</h1>
+  <p>Si vous voyez ce message, votre dépôt <code>clone</code> est bien publié !</p>
 </body>
 </html>
